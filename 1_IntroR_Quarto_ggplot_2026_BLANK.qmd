@@ -74,9 +74,9 @@ library()
 **tidyverse** is a very popular package that we will use functions from a lot, and is actually a collection of packages. One of the packages in it is **ggplot2**, which makes it very easy to make very nice looking plots.
 
 ```{r}
-install.packages()
+install.packages("tidyverse")
 
-library()
+library(tidyverse)
 
 mpg
 
@@ -89,8 +89,8 @@ But come on, there's time for all that boring stuff later, you said we could mak
 The **fivethirtyeight** package contains data sets written about on the FiveThirtyEight blog. We're going to play with a data set of popular Halloween candies, their characteristics and how popular they are, as assessed in survey data.
 
 ```{r}
-install.packages()
-library()
+install.packages("fivethirtyeight")
+library(fivethirtyeight)
 ```
 
 What are some ways we can look at this dataset?
@@ -172,10 +172,10 @@ For example, here we've plotted the win percentage (how often people ranked it i
 We're using the **geom_point()** function to plot this as a scatter plot.
 
 ```{r}
-sweetness <- ggplot() + 
-  aes(x = , y = ) + 
+sweetness <- ggplot(candy_rankings) + 
+  aes(x =sugarpercent , y =winpercent ) + geom_point()
 
-
+sweetness
 
 ```
 
@@ -183,20 +183,20 @@ To add a best-fit regression line, we can use the **geom_smooth()** function. Th
 
 ```{r}
 sweetness + 
-  geom_smooth()
+  geom_smooth(method=lm)
 ```
 
 If we'd like to compare sweetness across a categorical variable, like chocolate or not chocolate, we can use a **box and whisker plot**, generated with **geom_boxplot()**. What question is this plot asking?
 
 ```{r}
-sweetness <- ggplot()
+sweetness <- ggplot(candy_rankings)+ aes(x=chocolate, y=sugarpercent)+ geom_boxplot()
 sweetness
 ```
 
 Finally, let's try making a histogram - this only takes an input argument for the x axis.
 
 ```{r}
-sweethist <- ggplot()
+sweethist <- ggplot(candy_rankings) + aes(x=sugarpercent)+geom_histogram()
 sweethist
 ```
 
@@ -211,6 +211,10 @@ More detail here, to not worry about yet. https://ggplot2.tidyverse.org/referenc
 1.  Are fruity candies cheaper?
 
 - Can you make a boxplot that shows the price percent depending on fruity?
+
+  ```{r}
+
+  ```
 
 2.  Are sweeter candies more expensive? Do the candies with higher sugarpercent have higher winpercent? Plot this relationship.
 
