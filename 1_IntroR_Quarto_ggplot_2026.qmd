@@ -240,7 +240,7 @@ If you want the color to reflect another variable, for example, if there is frui
 ```{r}
 ggplot(candy_rankings) +  
   aes(x = chocolate, fill = fruity) + 
-  geom_bar(position = position_dodge()) 
+  geom_bar(position = position_dodge(width=0.5)) 
 ```
 
 ### Challenge question: what proportion of candies have BOTH chocolate and caramel?
@@ -294,7 +294,7 @@ ggplot(candy_rankings) +
   aes(x = sugarpercent, 
       y = winpercent) +
   geom_point() +
-  xlim(0, 1) +
+  xlim(0, 1.5) +
   ylim(0, 100)
 ```
 
@@ -469,6 +469,24 @@ Q1: Make a line graph that depicts the number of visitors per year for only Yose
 Q2: Make a boxplot that compares visitation rates in all parks in 1980 to present.
 
 ```{r}
+VisBoxplot <- ggplot(df5) + 
+  aes(x = Code, y = kVis) +
+  geom_boxplot(aes(fill = Code)) +
+  theme_bw() +
+  ggtitle("CA National Park Visitation (1980 - 2016)") +
+  xlab("National Park") +
+  ylab("Thousands of Visitors") +
+  scale_x_discrete(
+    breaks = c("CHIS","DEVA","JOTR","KICA",
+               "LAVO","PINN","REDW","SEQU","YOSE"), 
+    labels = c("Channel Islands","Death Valley","Joshua Tree",
+               "Kings Canyon","Lassen Volcanic","Pinnacles",
+               "Redwoods","Sequoia","Yosemite")
+  ) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45)) 
+
+VisBoxplot
 
 ```
 
