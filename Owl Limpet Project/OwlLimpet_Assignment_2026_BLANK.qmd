@@ -313,11 +313,9 @@ Filter the data to only include those sites before putting it into the `t.test()
 ```{r t-test}
 # run a t-test on your count data from each site (Limpet_Density)
 ShawsHeislerDensity <- Limpet_Density |> 
-  filter(site == "Shaws Cove")
+filter(site %in% c("Shaws Cove", "Heisler Park"))
 
-
-t.test(density ~ site, data = ShawsHeislerDensity)
-
+t.test(site ~ density, data = ShawsHeislerDensity)
 ```
 
 Explain the results of this t-test. Are you surprised by this result, given the figure you made above? Why do you think the results are what they are?
